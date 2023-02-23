@@ -24,16 +24,16 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/redirect" element={<Redirect />}/>
-        <Route path="/dashboard" element={<PrivateRoute role="admin"><Home /></PrivateRoute>} />
-        <Route path="/users" element={<PrivateRoute role="admin"><Users /></PrivateRoute>} />
-        <Route path="/doctors" element={<PrivateRoute role="admin"><Doctors /></PrivateRoute>} />
-        <Route path="/firefighters" element={<PrivateRoute role="admin"><Firefighters /></PrivateRoute>} />
-        <Route path="/police" element={<PrivateRoute role="admin"><Police /></PrivateRoute>} />
-        <Route path="/emergencies" element={<PrivateRoute role="admin"><Emergencies /></PrivateRoute>} />
-        <Route path="/emergency-cases" element={<PrivateRoute role="admin"><EmergencyCases /></PrivateRoute>} />
-        <Route path="/emergency-types" element={<PrivateRoute role="admin"><EmergencyTypes /></PrivateRoute>} />
-        <Route path="/blood-types" element={<PrivateRoute role="admin"><BloodTypes /></PrivateRoute>} />
-        <Route path="/diseases" element={<PrivateRoute role="admin"><Diseases /></PrivateRoute>} />
+        <Route path="/dashboard" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/doctors" element={<Doctors />} />
+        <Route path="/firefighters" element={<Firefighters />} />
+        <Route path="/police" element={<Police />} />
+        <Route path="/emergencies" element={<Emergencies />} />
+        <Route path="/emergency-cases" element={<EmergencyCases />} />
+        <Route path="/emergency-types" element={<EmergencyTypes />} />
+        <Route path="/blood-types" element={<BloodTypes />} />
+        <Route path="/diseases" element={<Diseases />} />
         <Route path='*' element={<NotFound />} />
         <Route path='/403' element={<Unauthorized />} />
       </Routes>

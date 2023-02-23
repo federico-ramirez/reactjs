@@ -1,16 +1,16 @@
 import React from 'react';
 import { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/img/safe-on-sivar-logo.png'
 import { ToastContainer, toast } from 'react-toastify';
 
-import { useAdminContext } from '../../contexts/AdminContext';
-
 const Login = () => {
-    const { login, token } = useAdminContext();
+    //const { login } = useAdminContext();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
     const onChange = (e, save) => {
         save(e.target.value);
@@ -18,7 +18,7 @@ const Login = () => {
 
     async function onSubmit(e) {
         e.preventDefault();
-        const logged = await login(email, password);
+        const logged = (email !== "" && password !== "");
 
         if (!logged) {
             toast('Error en inicio de sesión', { type: 'error' });
@@ -26,11 +26,11 @@ const Login = () => {
 
         setEmail("");
         setPassword("");
-
     }
 
-    if (token) {
-        return <Navigate replace to="/redirect" />
+    const navigateToDashboard = () => {
+        if (email !== "" && password !== "")
+            navigate("/dashboard")
     }
 
     return (
@@ -72,7 +72,7 @@ const Login = () => {
                                             onChange={(e) => onChange(e, setPassword)}
                                             value={password} />
                                     </div>
-                                    <button className="btn btn-danger btn-md btn-block" type="submit">Iniciar sesión</button>
+                                    <button className="btn btn-danger btn-md btn-block" type="submit" onClick={navigateToDashboard}>Iniciar sesión</button>
                                 </form>
                             </div>
                         </div>

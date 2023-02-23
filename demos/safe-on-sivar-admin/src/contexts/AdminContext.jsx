@@ -34,12 +34,14 @@ export const AdminProvider = (props) => {
     const login = useCallback((email, password) => {
         const loginAsync = async () => {
             let status = false;
+            
             try {
-                const { token: tokenRes } = await adminService.login(email, password);
-                if (tokenRes) {
+                //const { token: tokenRes } = await adminService.login(email, password);
+                status = (email !== '' && password !== '') ? true : false;
+                /*if (tokenRes) {
                     setTokenAll(tokenRes);
                     status = true;
-                }
+                }*/
             } catch (error) {
                 console.error(error);
                 console.error("Error in login");
