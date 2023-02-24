@@ -1,35 +1,18 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import adminService from '../services/Admin/Admin.services';
 
 const AdminContext = React.createContext();
-const TOKEN_KEY = "token";
 const USERNAME_KEY = "email";
 
 export const AdminProvider = (props) => {
-    const [token, setToken] = useState(undefined);
     const [user, setUser] = useState(undefined);
 
     useEffect(() => {
-        const verifyTokenAsync = async () => {
-            const lsToken = getToken();
-
-            if (lsToken) {
-                const { email, role } = await adminService.verifyToken(lsToken);
-                if (email && role) {
-                    setUser({ email, role });
-                    setTokenAll(lsToken);
-                    localStorage.setItem(USERNAME_KEY, email);
-                }
-            }
+        const { email, role } = [];
+        if (email && role) {
+            setUser({ email, role });
+            localStorage.setItem(USERNAME_KEY, email);
         }
-
-        verifyTokenAsync();
-    }, [token])
-
-    const setTokenAll = (token) => {
-        localStorage.setItem(TOKEN_KEY, token);
-        setToken(token);
-    }
+    }, [])
 
     const login = useCallback((email, password) => {
         const loginAsync = async () => {
@@ -55,15 +38,13 @@ export const AdminProvider = (props) => {
 
     const logout = useCallback(() => {
         setUser(undefined);
-        setTokenAll(undefined);
     }, [])
 
     const value = useMemo(() => ({
-        token: token,
         user: user,
         login: login,
         logout: logout
-    }), [token, user, login, logout]);
+    }), [user, login, logout]);
 
     return <AdminContext.Provider value={value} {...props} />;
 }
@@ -77,5 +58,3 @@ export const useAdminContext = () => {
 
     return context;
 }
-
-const getToken = () => localStorage.getItem(TOKEN_KEY);

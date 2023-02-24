@@ -22,7 +22,7 @@ services.login = async (email, password) => {
     return {};
 };
 
-services.verifyToken = async (token) => {
+/*services.verifyToken = async (token) => {
     const response = await axios.get(`${BASE_URL}auth/whoami`, {
         headers: {
             "Authorization": `Bearer ${token}`
@@ -35,7 +35,7 @@ services.verifyToken = async (token) => {
     }
 
     return {};
-};
+};*/
 
 export const allUserServices = {
     getUsers: async () => {

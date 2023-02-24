@@ -31,6 +31,7 @@ const Login = () => {
     const navigateToDashboard = () => {
         if (email !== "" && password !== "")
             navigate("/dashboard")
+        localStorage.setItem('email', email);
     }
 
     return (

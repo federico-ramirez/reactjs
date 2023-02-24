@@ -25,6 +25,8 @@ const Users = () => {
         };
         fetchAllUsers();
     }, [recharge])
+
+    console.log(users)
     
     return (
         <div>

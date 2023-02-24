@@ -1,19 +1,16 @@
 import axios from "axios";
-export const BASE_URL = "https://apisafeonsivar.live/";
+export const BASE_URL = "https://pokeapi.co/api/v2/pokemon/";
 
 const getToken = () => localStorage.getItem('token');
 
 export const fetchAllUsers = async () => {
-    const response = await axios.get(`${BASE_URL}users`,
+    const response = await axios.get(`${BASE_URL}`,
     {
-        headers: {
-            "Authorization": `Bearer ${getToken()}`
-        }
+        headers: {}
     });
 
     const usersResponse = await response.data;
-
-    return { items: usersResponse.users }
+    return { items: usersResponse.results }
 }
 
 export const fetchAllEmergencies = async () => {
